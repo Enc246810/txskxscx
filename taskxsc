@@ -1,0 +1,74 @@
+--Menu Layouts
+valueNotFound = "Value not found. Please control your ranges. (32 bit A, 64 bit Ca)"
+x = "•┃"
+C_info = "Select your achivement level."
+C1_info = "Script updated: 01/06/2023"
+
+mc1_1 = x.."Wealthy City & Worker\n     (Direct Level 1)"
+mc1_2 = x.."Wealthy City"
+EXIT = x.."Exit the script..."
+
+--Functions
+gg.showUiButton()
+
+function menu_C()
+  mc = gg.choice({mc_1, mc_2, mc_3},nil,C_info)
+end
+
+function search()
+  gg.clearResults()
+  gg.sleep(200)
+  gg.searchNumber(s_v1..";"..s_v2.."::8",gg.TYPE_DWORD)
+  if gg.getResultsCount() == 0 then
+    gg.alert(valueNotFound)
+  end
+end
+
+function edit()
+  gg.sleep(200)
+  gg.getResults(get_r)
+  gg.editAll("0;48000",gg.TYPE_DWORD)
+end
+
+while true do
+if gg.isClickedUiButton() then
+-- Ready Layouts
+mc_1 = "Level 1"
+mc_2 = "Level 2"
+mc_3 = "Level 3"
+local menu_C1 = gg.choice({EXIT, mc1_1, mc1_2},nil,C1_info)
+
+--Code
+if menu_C1 == 1 then
+  print("Exit Successful")
+  os.exit()
+end
+if menu_C1 == 2 then
+  s_v1 = "5000"
+  s_v2 = "3"
+  search()
+  get_r = "4"
+  edit()
+end
+if menu_C1 == 3 then
+  mc_1 = nil
+  mc_3 = "Level 3 and Metropolis Level 1"
+  menu_C()
+  if mc == 2 then
+    s_v1 = "100000"
+    s_v2 = "10"
+    search()
+    get_r = "2"
+    edit()
+  end
+  if mc == 3 then
+    s_v1 = "1000000"
+    s_v2 = "30"
+    search()
+    get_r = "4"
+    edit()
+  end
+end
+
+end
+end
