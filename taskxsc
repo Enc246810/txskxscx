@@ -17,6 +17,7 @@ end
 
 function search()
   gg.clearResults()
+  gg.setVisible(false)
   gg.sleep(200)
   gg.searchNumber(s_v1..";"..s_v2.."::8",gg.TYPE_DWORD)
   if gg.getResultsCount() == 0 then
@@ -28,6 +29,7 @@ function edit()
   gg.sleep(200)
   gg.getResults(get_r)
   gg.editAll("0;48000",gg.TYPE_DWORD)
+  gg.clearResults()
 end
 
 while true do
